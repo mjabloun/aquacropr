@@ -16,7 +16,7 @@ An object of class \code{character} of length 1.
 .placeholder_close
 }
 \description{
-Single braces (\code{\{name\}}). Unlike Daisy, AquaCrop text files have no
-\code{\{...\}} syntax of their own, so the extra brace daisyr uses is not needed.
+Single braces (\code{\{name\}}). AquaCrop text files have no
+\code{\{...\}} syntax of their own.
 }
 \keyword{internal}

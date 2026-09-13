@@ -1,4 +1,4 @@
-#' Canonical calibrate() / calibrate_daisy() method name
+#' Canonical calibrate() method name
 #' @noRd
 .normalize_calibrate_method <- function(method) {
   if (length(method) != 1L || is.na(method) || !nzchar(method)) {

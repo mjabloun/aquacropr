@@ -16,7 +16,7 @@ added, grouped by area.
   `ACsaV73.exe`, ...).
 * `run_aquacrop()` - run the plugin from a working directory that already
   contains `LIST/`, `SIMUL/`, and `OUTP/`. Optional `cmd` glue template
-  for HPC/Singularity, matching daisyr's `run_daisy()`. Default
+  for HPC/Singularity. Default
   `progress_window = FALSE` suppresses the AquaCrop 7.3 Tk progress
   dialog by briefly renaming `_internal/_tkinter.pyd` (FAO already
   runs headless when Tk cannot import). `program_parameters = TRUE`
@@ -71,7 +71,7 @@ added, grouped by area.
 
 * YAML `parameters:` list of scalar placeholders (`{name}`) in AquaCrop
   text files (`.CRO`, `.SOL`, `.PRM`, ...). Class `aquacropr_parameters`.
-  Unlike daisyr, AquaCrop does not need `{{name}}`; a single brace is enough.
+  Placeholders are `{name}` (single braces).
 * `read_parameters()` / `as_parameters()` / `validate_parameters()` /
   `parameter_names()` / `parameter_defaults()` / `fill_values()` /
   `expand_names()` / `render_templates()`.
@@ -104,5 +104,5 @@ added, grouped by area.
 ## Objectives
 
 * `compute_generic_objective()`, `objective_spec()`,
-  `composite_objective()`, `evaluate_objective()` - same pattern as daisyr,
-  defaulting to `read_out()`.
+  `composite_objective()`, `evaluate_objective()`, defaulting to
+  `read_out()`.

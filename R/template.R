@@ -1,7 +1,7 @@
 #' Placeholder delimiters used by [render_one_template()]
 #'
-#' Single braces (`{name}`). Unlike Daisy, AquaCrop text files have no
-#' `{...}` syntax of their own, so the extra brace daisyr uses is not needed.
+#' Single braces (`{name}`). AquaCrop text files have no `{...}` syntax of
+#' their own.
 #' @keywords internal
 .placeholder_open <- "{"
 #' @rdname dot-placeholder_open

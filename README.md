@@ -1,8 +1,8 @@
 # aquacropr
 
-R driver for the **FAO AquaCrop stand-alone (plugin)** executable, in the
-same spirit as **daisyr**: write inputs, run the official binary, parse
-outputs, score against observations.
+R driver for the **FAO AquaCrop stand-alone (plugin)** executable: write
+inputs, run the official binary, parse outputs, and score simulations
+against observations.
 
 This is not a reimplementation of AquaCrop.
 
