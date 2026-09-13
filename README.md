@@ -1,8 +1,8 @@
 # aquacropr
 
 R driver for the **FAO AquaCrop stand-alone (plugin)** executable, in the
-same spirit as [daisyr](../daisyr): write inputs, run the official binary,
-parse outputs, score against observations.
+same spirit as **daisyr**: write inputs, run the official binary, parse
+outputs, score against observations.
 
 This is not a reimplementation of AquaCrop.
 
@@ -26,9 +26,6 @@ set_simul_dir("C:/path/to/plugin/SIMUL")
 ```
 
 Or set environment variables `AQUACROP_EXE` and `AQUACROP_SIMUL`.
-
-A runnable Tunis-wheat walkthrough lives in [`Example_aquacrop/`](../Example_aquacrop)
-(`source("run_wheat.R")`; `source("run_design.R")` for designs / SA sketch).
 
 ## Typical run
 
