@@ -1,0 +1,13 @@
+parameters:
+  - name: CCx
+    from_file: crop_template.CRO
+    to_file: wheat.CRO
+    default: 0.96
+    min: 0.80
+    max: 0.99
+  - name: WP
+    from_file: crop_template.CRO
+    to_file: wheat.CRO
+    default: 17
+    min: 13
+    max: 20

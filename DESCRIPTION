@@ -1,0 +1,41 @@
+Package: aquacropr
+Title: Run and Calibrate FAO AquaCrop from R
+Version: 0.0.0.9000
+Authors@R: 
+    person("Mohamed Jabloun", role = c("aut", "cre"), email = "aquacropr@example.com")
+Description: Tools for driving the FAO AquaCrop stand-alone (plugin)
+    executable from R. Provides helpers to locate the plugin, assemble the
+    LIST/SIMUL/OUTP working directory the executable expects, write climate
+    files, parse daily output, template-render AquaCrop text files from a
+    YAML parameters object, score simulations against observations,
+    run DEoptim, BOBYQA, multi-BOBYQA, DDS, CMA-ES or EGO calibration, Morris / Sobol sensitivity analysis,
+    and space-filling metamodel designs.
+License: MIT + file LICENSE
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.3.2
+Suggests: 
+    DiceDesign,
+    DiceEval,
+    DiceKriging,
+    DiceOptim,
+    DEoptim,
+    ggplot2,
+    ggrepel,
+    knitr,
+    lhs,
+    minqa,
+    cmaes,
+    randtoolbox,
+    rmarkdown,
+    sensitivity,
+    testthat (>= 3.0.0)
+Config/testthat/edition: 3
+Imports: 
+    data.table,
+    glue,
+    hydroGOF,
+    stats,
+    utils,
+    yaml
+VignetteBuilder: knitr

@@ -1,0 +1,70 @@
+---
+title: "Getting started with aquacropr"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Getting started with aquacropr}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  eval = FALSE
+)
+```
+
+aquacropr drives the FAO AquaCrop **stand-alone plugin** from R. It does not
+reimplement the model.
+
+## Workflow
+
+1. Point at the executable (`set_aquacrop_path()`).
+2. Describe free scalars in a YAML `parameters:` file (`{CCx}` in a `.CRO`
+   template, bounds, `from_file` / `to_file`).
+3. `render_templates()` writes concrete AquaCrop text files.
+4. `run_aquacrop()` launches the plugin (it reads `LIST/ListProjects.txt`).
+5. `read_out()` parses daily `.OUT` files; `objective_spec()` scores them.
+
+A runnable Tunis-wheat script lives next to the package:
+`Example_aquacrop/run_wheat.R`.
+
+```{r}
+library(aquacropr)
+set_aquacrop_path("C:/path/to/AquaCrop73.exe")
+set_simul_dir("C:/path/to/plugin/SIMUL")
+
+parameters <- read_parameters("parameters.yaml")
+validate_parameters(parameters, template_dir = "templates")
+render_templates(parameters, parameter_defaults(parameters),
+                 template_dir = "templates", output_dir = "DATA")
+run_aquacrop(working_dir = "C:/path/to/plugin")
+day <- read_out("C:/path/to/plugin/OUTP/example_wheatPRMday.OUT")
+```
+
+## Calibration and sensitivity
+
+`calibrate()` wraps `evaluate_candidate()` in `DEoptim` (default),
+`BOBYQA`, `multi-BOBYQA`, `DDS`, or `CMA-ES`. `sa_design()` /
+`run_sa_design()` / `plot_sa()` run Morris or Sobol-Jansen. After screening,
+pass `names` to `calibrate()` so the rest stay at defaults.
+
+## Designs and metamodels
+
+```{r}
+design <- generate_param_design(parameters, n = 30, method = "lhs", seed = 1)
+run <- run_param_design(
+  design, parameters,
+  output_files = c(day = "OUTP/example_wheatPRMday.OUT"),
+  working_dir = plugin_dir,
+  keep_dir = "metamodel_runs"
+)
+scored <- score_param_design(run, objective, output_name = "day")
+mm <- fit_metamodel(scored, parameters)
+validate_metamodel(mm, scored)
+calibrate_ego(mm, parameters, objective, sim_file = "OUTP/example_wheatPRMday.OUT",
+              nsteps = 10, working_dir = plugin_dir)
+```
+
+`create_parameters(c("CCx", "WP"))` scaffolds a starter YAML.
